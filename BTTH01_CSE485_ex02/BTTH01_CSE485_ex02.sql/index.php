@@ -18,14 +18,14 @@
                     <a href="">Trang chủ</a>
                 </div>
                 <div class="header-left-info-2">
-                    <a href="">Đăng nhập</a>
+                    <a href="login.php">Đăng nhập</a>
                 </div>
             </div>  
         </div>
         <div class="header-right">
         <form action="" method="post">
             <input type="text" name="" placeholder="Nội dung cần tìm" value="">
-            <button type="submit">Tìm</button>
+            <button type="Tìm">Tìm</button>
         </form>
         </div>
     </div>

@@ -1,3 +1,19 @@
+<?php
+$username = "root"; 
+$password = "";   
+$server   = "localhost"; 
+$dbname   = "btth01_cse485"; 
+
+$conn = new mysqli($server, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Không kết nối :" . $conn->connect_error);
+}
+$sql = 'SELECT * FROM theloai';
+$result = $conn->query($sql);
+$conn ->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,27 +73,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
-                            <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                       
+                        <?php
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>".$row['ma_tloai']."</td>";
+                                    echo "<td>".$row['ten_tloai']."</td>";
+                                    echo '<td><a href="edit_category.php"><i class="fas fa-pen-to-square"></i></a></td>';
+                                    echo'<td><a href="delete_category.php"><i class="fa-solid fa-trash"></i></a></td>';
+                                    echo'<tr/>';
+                                }
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

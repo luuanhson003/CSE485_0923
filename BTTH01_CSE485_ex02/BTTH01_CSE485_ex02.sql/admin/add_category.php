@@ -1,3 +1,27 @@
+<?php
+$ten_tloai = $_POST['ten_tloai'];
+$username = "root"; 
+$password = "";   
+$server   = "localhost"; 
+$dbname   = "btth01_cse485"; 
+
+$conn = new mysqli($server, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Không kết nối :" . $conn->connect_error);
+}
+$sql = "INSERT INTO theloai (ten_tloai) values ('$ten_tloai')";
+if ($conn->query($sql) === true) {
+    echo "Thêm dữ liệu thành công";
+}
+else {
+    echo "Lỗi".$sql."<br>".$conn->error;
+}
+
+$result = $conn->query($sql);
+$conn ->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +71,7 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                <form action="" method="post">
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
                         <input type="text" class="form-control" name="txtCatName" >
